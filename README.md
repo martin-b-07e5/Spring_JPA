@@ -32,4 +32,4 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     ✅1- Crear nuestra primera DB y conectarla a la app.
     ✅2- JPA (Java Persistence API), ORM Hibernate (Object Relational Mapping).
     ✅3- Mapear las entidades que iremos a usar en nuestra base de datos.
-    👷4- Crear variables de ambiente para dejar nuestro código seguro.
+    ✅4- Crear variables de ambiente para dejar nuestro código seguro.
