@@ -27,9 +27,18 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     8- Buscar episodios por nombre.
     9- Top 5 episodios por serie.
 
-## Qué aprenderemos en esta aula?
+## ✅2-Persistiendo_los_datos_de_la_serie
+
+### Qué aprenderemos en esta aula?
 
     ✅1- Crear nuestra primera DB y conectarla a la app.
     ✅2- JPA (Java Persistence API), ORM Hibernate (Object Relational Mapping).
     ✅3- Mapear las entidades que iremos a usar en nuestra base de datos.
     ✅4- Crear variables de ambiente para dejar nuestro código seguro.
+
+## 👷3-Mapeando_relacionamientos
+
+    ✅1- Relaciones entre tablas (OneToMany, ManyToOne).
+    👷✅2- Relaciones bidireccionales.
+    👷3- Guardar episodios de las series.
+    👷4- Relacionar correctamente la llave foránea (extranjera).

@@ -24,9 +24,9 @@ public class Serie {
   private String actores;
   private String sinopsis;
   // una serie puede tener muchos episodios. Y un episodio pertenece a una sola serie.
-//  @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
-  @Transient
-  private List<Episodio> episodioList; // No los mapeo todavía. Toda serie contiene una lista de episodes
+  @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
+  private List<Episodio> episodios;
+
 
   // default constructor
   public Serie() {
