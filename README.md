@@ -36,9 +36,17 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     ✅3- Mapear las entidades que iremos a usar en nuestra base de datos.
     ✅4- Crear variables de ambiente para dejar nuestro código seguro.
 
-## 👷3-Mapeando_relacionamientos
+## ✅3-Mapeando_relacionamientos
+
+    ✅1- Relaciones entre tablas (OneToMany, ManyToOne).
+    👷✅2- Relaciones bidireccionales.
+    ❌3- Guardar episodios de las series.
+    ❌4- Relacionar correctamente la llave foránea (extranjera).
+
+## 👷04-Profundizando_en_las_relaciones_bidireccionales
 
     ✅1- Relaciones entre tablas (OneToMany, ManyToOne).
     👷✅2- Relaciones bidireccionales.
     👷3- Guardar episodios de las series.
-    👷4- Relacionar correctamente la llave foránea (extranjera).
+    ❌4- Relacionar correctamente la llave foránea (extranjera).
+
