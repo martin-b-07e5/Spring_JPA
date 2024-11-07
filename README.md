@@ -39,14 +39,21 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
 ## ✅3-Mapeando_relacionamientos
 
     ✅1- Relaciones entre tablas (OneToMany, ManyToOne).
-    👷✅2- Relaciones bidireccionales.
-    ❌3- Guardar episodios de las series.
-    ❌4- Relacionar correctamente la llave foránea (extranjera).
+    ✅2- Relaciones bidireccionales.
+    ✅3- Guardar episodios de las series.
+    ✅4- Relacionar correctamente la llave foránea (extranjera).
 
-## 👷04-Profundizando_en_las_relaciones_bidireccionales
+    ✅04-Profundizando_en_las_relaciones_bidireccionales
+        ✅1- Relaciones entre tablas (OneToMany, ManyToOne).
+        ✅2- Relaciones bidireccionales.
+        ✅3- Guardar episodios de las series.
+        ✅4- Relacionar correctamente la llave foránea (extranjera).
 
-    ✅1- Relaciones entre tablas (OneToMany, ManyToOne).
-    👷✅2- Relaciones bidireccionales.
-    👷3- Guardar episodios de las series.
-    ❌4- Relacionar correctamente la llave foránea (extranjera).
+## 4-Buscando_informaciones_en_la_base_de_datos
 
+    ✅- Poder buscar cualquier serie y guardarla en la DB.
+    ✅- Buscar episodios y guardarlos en la DB.
+    ✅- Mostrar todas las series buscadas.
+    👷- Buscar series guardadas por nombre.
+    👷- Top 5 mejores series.
+    👷- Buscar series por categoría.
