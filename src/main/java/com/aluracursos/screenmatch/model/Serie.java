@@ -24,7 +24,7 @@ public class Serie {
   private String actores;
   private String sinopsis;
   // una serie puede tener muchos episodios. Y un episodio pertenece a una sola serie.
-  @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private List<Episodio> episodios;
 
 
@@ -117,6 +117,13 @@ public class Serie {
   }
 
   public void setEpisodios(List<Episodio> episodios) {
+    // populate serie_id. Add new associations (if any) to maintain the relationship between series and episodios
+
+//    episodios.forEach(episodio -> episodio.setSerie(this)); // profesora
+    episodios.forEach(this::accept);  // yo
+    /*for (Episodio episodio : episodios) { // ide
+      episodio.setSerie(this);
+    }*/
     this.episodios = episodios;
   }
 
@@ -131,7 +138,12 @@ public class Serie {
             ", poster='" + poster + '\'' +
             ", genero=" + genero +
             ", actores='" + actores + '\'' +
-            ", sinopsis='" + sinopsis + '\'';
+            ", sinopsis='" + sinopsis + '\'' +
+            ", episodios='" + episodios + '\''
+        ;
   }
 
+  private void accept(Episodio episodio) {
+    episodio.setSerie(this);
+  }
 }

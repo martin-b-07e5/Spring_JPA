@@ -12,13 +12,13 @@ public class Episodio {
   @GeneratedValue(strategy = GenerationType.IDENTITY)  // auto increment
   private Long id;
   private Integer temporada;
-  @Column(name = "title", unique = true)
+  @Column(name = "title", unique = false)
   private String titulo;
   private Integer numeroEpisodio;
   private Double evaluacion;
   private LocalDate fechaDeLanzamiento;
   @ManyToOne
-//  @JoinColumn(name = "serie_id")
+  @JoinColumn(name = "serie_id")
   private Serie serie;
 
 
