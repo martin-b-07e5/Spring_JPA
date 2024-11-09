@@ -49,11 +49,28 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
         ✅3- Guardar episodios de las series.
         ✅4- Relacionar correctamente la llave foránea (extranjera).
 
+<hr>
+
 ## 4-Buscando_informaciones_en_la_base_de_datos
 
     ✅- Poder buscar cualquier serie y guardarla en la DB.
     ✅- Buscar episodios y guardarlos en la DB.
     ✅- Mostrar todas las series buscadas.
     👷- Buscar series guardadas por nombre.
+    👷- Top 5 mejores series.
+    👷- Buscar series por categoría.
+
+### 02-Búsquedas_por_partes_del_título
+
+### ¿Qué aprenderemos en esta aula?
+
+    1- Querys derivadas (Derived Querys).
+    2- Búsqueda de datos personalizadas.
+    3- Top 5 mejores Series.
+    4- Búsquedas por categorías usando enums.
+
+#### Requerimientos del proyecto
+
+    👷✅- Buscar series guardadas por nombre.
     👷- Top 5 mejores series.
     👷- Buscar series por categoría.
