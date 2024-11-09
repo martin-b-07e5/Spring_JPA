@@ -32,9 +32,10 @@ public class Principal {
     var opcion = -1;
     while (opcion != 0) {
       var menu = """
-          \n1 - Buscar series
-          2 - Buscar episodios
-          3 - Mostrar series buscadas
+          \n1- Buscar series.
+          2- Buscar episodios.
+          3- Mostrar series buscadas.
+          4- Buscar series por título.
           
           0 - Salir""";
       System.out.println(menu);
@@ -51,6 +52,10 @@ public class Principal {
         case 3:
           mostrarSeriesBuscadas();
           break;
+        case 4:
+          buscarSeriesPorTitulo();
+          break;
+
         case 0:
           System.out.println("Cerrando la aplicación...");
           break;
@@ -61,6 +66,8 @@ public class Principal {
 
   } // end muestraElMenu
 
+
+  // Methods
   private DatosSerie getDatosSerie() {
     System.out.println("Escribe el nombre de la serie que deseas buscar");
     var nombreSerie = teclado.nextLine();
@@ -153,12 +160,18 @@ public class Principal {
     /*serieList = datosSeriesList.stream()
 //        .map(datosSerie -> new Serie(datosSerie)) // lambda
         .map(Serie::new) // method reference
-        .collect(Collectors.toList());  // convertimos a list*/
+        .collect(Collectors.toList());  // convertimos a list
+    */
+
     serieList = repository.findAll(); // Mostramos las series en la BASE DE DATOS.
 
     serieList.stream()
         .sorted(Comparator.comparing(Serie::getTitulo))  // ordenamos las series por título.
         .forEach(System.out::println); // Podemos modificar toString para darle formato
+  }
+
+  private void buscarSeriesPorTitulo() {
+
   }
 
 }
