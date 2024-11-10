@@ -36,7 +36,7 @@ public class Principal {
           4- Buscar series por título.
           5- Top 5 mejores series.
           6- Buscar series por género.
-          7- TotalTemporadas >=8 y Rating> a 8.8
+          7- Filtrar series por TotalTemporadas >=8 y Rating >8.8
           
           0 - Salir""";
       System.out.println(menu);
@@ -235,16 +235,46 @@ public class Principal {
   }
 
   private void buscarSeriesPorTotalTemporadasYRating() {
-//    TotalTemporadas <=3 y Rating> a 8.1
-    List<Serie> seriesPorTotalTemporadasYRating =
-        repository.findByTotalTemporadasGreaterThanEqualAndEvaluacionGreaterThan(8, 8.8);
+    int totalTemporadas = 0;
+    double rating = 0;
+    try {
+      System.out.println("Filtrar series con cuántas temporadas");
+      totalTemporadas = teclado.nextInt();
+      teclado.nextLine(); // Limpia el buffer tras nextInt()
 
-    if (seriesPorTotalTemporadasYRating.isEmpty()) {
-      System.out.println("No se han encontrado series con ese criterio.");
-    } else {
-      System.out.println("\nSeries con un total de temporadas >=8 y un rating > 8.8:");
-      seriesPorTotalTemporadasYRating.forEach(System.out::println);
+      System.out.println("¿Con rating a partir de cuanto?");
+      rating = teclado.nextDouble();
+      teclado.nextLine(); // Limpia el buffer tras nextInt()
+
+      List<Serie> seriesPorTotalTemporadasYRating =
+          repository.findByTotalTemporadasGreaterThanEqualAndEvaluacionGreaterThan(totalTemporadas, rating);
+
+      if (seriesPorTotalTemporadasYRating.isEmpty()) {
+        System.out.println("No se han encontrado series con ese criterio.");
+      } else {
+        System.out.println("\nSeries con un total de temporadas >=" + totalTemporadas + " y un rating >" + rating);
+//        seriesPorTotalTemporadasYRating.forEach(System.out::println); // print all
+        seriesPorTotalTemporadasYRating.forEach(s -> System.out.println(
+            "id" + s.getId() +
+                ", Título: " + s.getTitulo() +
+                ", Temporadas: " + s.getTotalTemporadas() +
+                ", Rating: " + s.getEvaluacion()
+        ));
+      }
+
+    } catch (InputMismatchException e) {
+      System.out.println("Error: Entrada inválida. Por favor, ingrese valores numéricos válidos.");
+      System.out.println(e.getMessage());
+      teclado.nextLine(); // Limpia el buffer tras entrada no válida
+    } catch (NumberFormatException e) {
+      System.out.println("Error al parsear un número: " + e.getMessage());
+      teclado.nextLine(); // Limpia el buffer tras entrada no válida
+    } catch (RuntimeException e) {
+      System.out.println("Ocurrió un error inesperado. Por favor, inténtelo de nuevo.");
+      e.printStackTrace(); // Opcional: imprime el stack trace para facilitar la depuración
     }
+
+
   }
 
 
