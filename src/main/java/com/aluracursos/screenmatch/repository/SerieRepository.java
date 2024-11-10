@@ -3,6 +3,7 @@ package com.aluracursos.screenmatch.repository;
 import com.aluracursos.screenmatch.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface SerieRepository extends JpaRepository<Serie, Long> {
@@ -10,7 +11,11 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
   //  Serie findByTituloContainsIgnoreCase(String titulo);
   Optional<Serie> findByTituloContainsIgnoreCase(String titulo);
-  
+
+  //  5- Top 5 mejores series.
+  List<Serie> findTop5ByOrderByEvaluacionDesc();
+
+
 //  Serie findByPoster(String poster);
 //  Serie findByGenero(String genero);
 //  Serie findByActores(String actores);
