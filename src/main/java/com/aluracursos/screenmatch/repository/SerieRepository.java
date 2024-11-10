@@ -19,6 +19,9 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
   //  06-Búsquedas_por_categorías (genre)
   List<Serie> findByGenero(Categoria genero); // le pasamos el 'enum'
 
+  // buscar series que TotalTemporadas <=3 y Rating > a 8.1
+  List<Serie> findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThan(String totalTemporadas, double evaluacion);
+
 //  Serie findByPoster(String poster);
 //  Serie findByActores(String actores);
 //  Serie findBySinopsis(String sinopsis);

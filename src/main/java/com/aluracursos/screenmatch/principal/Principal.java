@@ -36,6 +36,7 @@ public class Principal {
           4- Buscar series por título.
           5- Top 5 mejores series.
           6- Buscar series por género.
+          7- TotalTemporadas <=3 y Rating> a 8.1
           
           0 - Salir""";
       System.out.println(menu);
@@ -62,6 +63,9 @@ public class Principal {
             break;
           case 6:
             buscarSeriesPorGenero();
+            break;
+          case 7:
+            buscarSeriesPorTotalTemporadasYRating();
             break;
           case 0:
             System.out.println("Cerrando la aplicación...");
@@ -206,7 +210,8 @@ public class Principal {
 //      seriesTop5.forEach(System.out::println); // print all
       // imprimimos solo el título y la evaluación
       seriesTop5.forEach(s -> System.out.println(
-          "\nTítulo: " + s.getTitulo() +
+          "Título: " + s.getTitulo() +
+              ", Temporadas: " + s.getTotalTemporadas() +
               ", Rating: " + s.getEvaluacion()
       ));
     }
@@ -227,7 +232,18 @@ public class Principal {
       System.out.println("\nSeries con el género '" + generoSerie + "':");
       seriesPorGenero.forEach(System.out::println);
     }
+  }
 
+  private void buscarSeriesPorTotalTemporadasYRating() {
+//    TotalTemporadas <=3 y Rating> a 8.1
+    List<Serie> seriesPorTotalTemporadasYRating = repository.findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThan(String.valueOf(3), 8.1);
+
+    if (seriesPorTotalTemporadasYRating.isEmpty()) {
+      System.out.println("No se han encontrado series con ese criterio.");
+    } else {
+      System.out.println("\nSeries con un total de temporadas <=3 y un rating > 8.1:");
+      seriesPorTotalTemporadasYRating.forEach(System.out::println);
+    }
   }
 
 
