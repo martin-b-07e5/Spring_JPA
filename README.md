@@ -73,4 +73,4 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
 
     ✅- Buscar series guardadas por nombre.
     ✅- Top 5 mejores series.
-    👷- Buscar series por categoría.
+    👷✅- Buscar series por categoría.
