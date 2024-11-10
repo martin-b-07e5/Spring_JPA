@@ -1,5 +1,6 @@
 package com.aluracursos.screenmatch.repository;
 
+import com.aluracursos.screenmatch.model.Categoria;
 import com.aluracursos.screenmatch.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,9 +16,10 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
   //  5- Top 5 mejores series.
   List<Serie> findTop5ByOrderByEvaluacionDesc();
 
+  //  06-Búsquedas_por_categorías (genre)
+  List<Serie> findByGenero(Categoria genero); // le pasamos el 'enum'
 
 //  Serie findByPoster(String poster);
-//  Serie findByGenero(String genero);
 //  Serie findByActores(String actores);
 //  Serie findBySinopsis(String sinopsis);
   // Aquí puedes añadir más métodos para buscar series según otros criterios.

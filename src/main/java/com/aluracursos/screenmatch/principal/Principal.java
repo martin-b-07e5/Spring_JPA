@@ -1,9 +1,6 @@
 package com.aluracursos.screenmatch.principal;
 
-import com.aluracursos.screenmatch.model.DatosSerie;
-import com.aluracursos.screenmatch.model.DatosTemporadas;
-import com.aluracursos.screenmatch.model.Episodio;
-import com.aluracursos.screenmatch.model.Serie;
+import com.aluracursos.screenmatch.model.*;
 import com.aluracursos.screenmatch.repository.SerieRepository;
 import com.aluracursos.screenmatch.service.ConsumoAPI;
 import com.aluracursos.screenmatch.service.ConvierteDatos;
@@ -37,6 +34,7 @@ public class Principal {
           3- Mostrar series buscadas.
           4- Buscar series por título.
           5- Top 5 mejores series.
+          6- Buscar series por género.
           
           0 - Salir""";
       System.out.println(menu);
@@ -58,6 +56,9 @@ public class Principal {
           break;
         case 5:
           mostrarTop5Series();
+          break;
+        case 6:
+          buscarSeriesPorGenero();
           break;
 
 
@@ -205,6 +206,27 @@ public class Principal {
       ));
     }
   }
+
+  // findByGeneroContainsIgnoreCase
+  // los categorías están en el enum en src/main/java/com/aluracursos/screenmatch/model/Categoria.java
+  private void buscarSeriesPorGenero() {
+    System.out.println("Escribe el genero de la serie que desees buscar");
+    var generoSerie = teclado.nextLine();
+
+    // transformamos generoSerie en un elemento del enum Categoria.
+//    Categoria categoria = Categoria.fromString(generoSerie);
+
+    List<Serie> seriesPorGenero = repository.findByGenero(Categoria.fromString(generoSerie)); // desde la versión 1.15.0 de Spring Data JPA
+
+    if (seriesPorGenero.isEmpty()) {
+      System.out.println("No se ha encontrado la categoría '" + generoSerie + "'");
+    } else {
+      System.out.println("\nSeries con el género '" + generoSerie + "':");
+      seriesPorGenero.forEach(System.out::println);
+    }
+
+  }
+
 
 } // end Principal
 
