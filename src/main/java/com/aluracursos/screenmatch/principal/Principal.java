@@ -26,7 +26,8 @@ public class Principal {
 
   // methods
   public void muestraElMenu() {
-    var opcion = -1;
+
+    int opcion = -1;
     while (opcion != 0) {
       var menu = """
           \n1- Buscar series.
@@ -38,36 +39,40 @@ public class Principal {
           
           0 - Salir""";
       System.out.println(menu);
-      opcion = teclado.nextInt();
-      teclado.nextLine();
 
-      switch (opcion) {
-        case 1:
-          buscarSerieWeb();
-          break;
-        case 2:
-          buscarEpisodioPorSerie();
-          break;
-        case 3:
-          mostrarSeriesBuscadas();
-          break;
-        case 4:
-          buscarSeriesPorTitulo();
-          break;
-        case 5:
-          mostrarTop5Series();
-          break;
-        case 6:
-          buscarSeriesPorGenero();
-          break;
+      try {
+        String input = teclado.nextLine();
+        opcion = Integer.parseInt(input); // por si ingresa una letra o carácter especial.
 
-
-        case 0:
-          System.out.println("Cerrando la aplicación...");
-          break;
-        default:
-          System.out.println("Opción inválida");
+        switch (opcion) {
+          case 1:
+            buscarSerieWeb();
+            break;
+          case 2:
+            buscarEpisodioPorSerie();
+            break;
+          case 3:
+            mostrarSeriesBuscadas();
+            break;
+          case 4:
+            buscarSeriesPorTitulo();
+            break;
+          case 5:
+            mostrarTop5Series();
+            break;
+          case 6:
+            buscarSeriesPorGenero();
+            break;
+          case 0:
+            System.out.println("Cerrando la aplicación...");
+            break;
+          default:
+            System.out.println("Ingrese un número del 0 al 6.");
+        }
+      } catch (NumberFormatException e) {
+        System.out.println("OPCIÓN INVÁLIDA. POR FAVOR, INGRESE UN NÚMERO DEL 0 AL 6.");
       }
+
     } // end while
 
   } // end muestraElMenu
@@ -207,16 +212,14 @@ public class Principal {
     }
   }
 
-  // findByGeneroContainsIgnoreCase
   // los categorías están en el enum en src/main/java/com/aluracursos/screenmatch/model/Categoria.java
   private void buscarSeriesPorGenero() {
     System.out.println("Escribe el genero de la serie que desees buscar");
     var generoSerie = teclado.nextLine();
 
     // transformamos generoSerie en un elemento del enum Categoria.
-//    Categoria categoria = Categoria.fromString(generoSerie);
-
-    List<Serie> seriesPorGenero = repository.findByGenero(Categoria.fromString(generoSerie)); // desde la versión 1.15.0 de Spring Data JPA
+    // Categoria categoria = Categoria.fromString(generoSerie);
+    List<Serie> seriesPorGenero = repository.findByGenero(Categoria.fromAString(generoSerie)); // desde la versión 1.15.0 de Spring Data JPA
 
     if (seriesPorGenero.isEmpty()) {
       System.out.println("No se ha encontrado la categoría '" + generoSerie + "'");

@@ -41,7 +41,7 @@ public class Serie {
     this.evaluacion = OptionalDouble.of(Double.parseDouble(datosSerie.evaluacion())).orElse(0);  // String » Double
     this.poster = datosSerie.poster();
     // [0] Trae el primero. Usa el Enum en Categoria .trim() no es necesario.
-    this.genero = Categoria.fromString(datosSerie.genero().split(",")[0].trim());
+    this.genero = Categoria.fromAString(datosSerie.genero().split(",")[0].trim());
     this.actores = datosSerie.actores();
     this.sinopsis = datosSerie.sinopsis();
 //    this.sinopsis = ConsultaChatGPT.obtenerTraduccion(datosSerie.sinopsis());

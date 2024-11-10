@@ -23,15 +23,11 @@ public enum Categoria {
     this.categoryOmdb = categoryOmdb;
   }
 
-  // Getter
-  public String getCategoryOmdb() {
-    return categoryOmdb;
-  }
 
   /* 05-Preparando el ambiente: método utilizado en el enum categoría
-      método específico para realizar la conversión
-         entre la información de OMDB y la de nuestra aplicación. */
-  public static Categoria fromString(String text) {
+        método específico para realizar la conversión
+           entre la información de OMDB y la de nuestra aplicación. */
+  public static Categoria fromAString(String text) {
     for (Categoria categoria : Categoria.values()) {
       if (categoria.categoryOmdb.equalsIgnoreCase(text)) {
         return categoria;
