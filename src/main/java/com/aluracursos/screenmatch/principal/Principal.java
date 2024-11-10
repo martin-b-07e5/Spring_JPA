@@ -32,11 +32,11 @@ public class Principal {
       var menu = """
           \n1- Buscar series.
           2- Buscar episodios.
-          3- Mostrar series buscadas.
+          3- Mostrar series buscadas. (ordenadas por título)
           4- Buscar series por título.
           5- Top 5 mejores series.
           6- Buscar series por género.
-          7- TotalTemporadas <=3 y Rating> a 8.1
+          7- TotalTemporadas >=8 y Rating> a 8.8
           
           0 - Salir""";
       System.out.println(menu);
@@ -124,7 +124,7 @@ public class Principal {
 
       int totalTemporadas = 0;
       try {
-        totalTemporadas = Integer.parseInt(serieEncontrada.getTotalTemporadas());  // convierte a Integer el
+        totalTemporadas = serieEncontrada.getTotalTemporadas();  // convierte a Integer el
         // totalTemporadas
       } catch (NumberFormatException e) {
         System.out.println("***NO HAY INFORMACIÓN DE TEMPORADAS Y EPISODIOS DE LA SERIE: " + serieEncontrada.getTitulo());
@@ -236,12 +236,13 @@ public class Principal {
 
   private void buscarSeriesPorTotalTemporadasYRating() {
 //    TotalTemporadas <=3 y Rating> a 8.1
-    List<Serie> seriesPorTotalTemporadasYRating = repository.findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThan(String.valueOf(3), 8.1);
+    List<Serie> seriesPorTotalTemporadasYRating =
+        repository.findByTotalTemporadasGreaterThanEqualAndEvaluacionGreaterThan(8, 8.8);
 
     if (seriesPorTotalTemporadasYRating.isEmpty()) {
       System.out.println("No se han encontrado series con ese criterio.");
     } else {
-      System.out.println("\nSeries con un total de temporadas <=3 y un rating > 8.1:");
+      System.out.println("\nSeries con un total de temporadas >=8 y un rating > 8.8:");
       seriesPorTotalTemporadasYRating.forEach(System.out::println);
     }
   }

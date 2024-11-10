@@ -16,7 +16,7 @@ public class Serie {
   private Long id;
   @Column(name = "title", unique = true)
   private String titulo;
-  private String totalTemporadas;
+  private Integer totalTemporadas;
   private Double evaluacion; // String » Double
   private String poster;
   @Enumerated(EnumType.STRING)
@@ -35,7 +35,7 @@ public class Serie {
   // *** Constructor que recibe DatosSerie ***
   public Serie(DatosSerie datosSerie) {
     this.titulo = datosSerie.titulo();
-    this.totalTemporadas = datosSerie.totalTemporadas();
+    this.totalTemporadas = Integer.valueOf(datosSerie.totalTemporadas());
 //    this.evaluacion = Double.valueOf(datosSerie.evaluacion());  // (este tb funciona)
 //    this.evaluacion = OptionalDouble.of(Double.valueOf(datosSerie.evaluacion())).orElse(0);  // String » Double
     this.evaluacion = OptionalDouble.of(Double.parseDouble(datosSerie.evaluacion())).orElse(0);  // String » Double
@@ -64,11 +64,11 @@ public class Serie {
     this.titulo = titulo;
   }
 
-  public String getTotalTemporadas() {
+  public Integer getTotalTemporadas() {
     return totalTemporadas;
   }
 
-  public void setTotalTemporadas(String totalTemporadas) {
+  public void setTotalTemporadas(Integer totalTemporadas) {
     this.totalTemporadas = totalTemporadas;
   }
 
