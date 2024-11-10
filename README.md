@@ -10,10 +10,10 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     ✅1- Avanzar en el proyecto Screenmatch, iniciado en el primer curso de la formación, creando un menú con varias opciones;
     ✅2- Modelar las abstracciones de la aplicación a través de clases, enums, atributos y métodos;
     👷✅3- Consumir la API del ChatGPT(Opcional; (API vencida)
-    👷4- Utilizar Spring Data JPA para persistir datos en la base de datos;
-    5- Conocer varios tipos de bases de datos y utilizar PostgreSQL;
-    6- Trabajar con varios tipos de consultas a la base de datos;
-    7- Profundizar en la interfaz JPA Repository.
+    ✅4- Utilizar Spring Data JPA para persistir datos en la base de datos;
+    ✅5- Conocer varios tipos de bases de datos y utilizar PostgreSQL;
+    ✅6- Trabajar con varios tipos de consultas a la base de datos;
+    👷✅7- Profundizar en la interfaz JPA Repository.
 
 ## 👷 Requisitos del proyecto
 
@@ -27,6 +27,8 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     8- Buscar episodios por nombre.
     9- Top 5 episodios por serie.
 
+<hr>
+
 ## ✅2-Persistiendo_los_datos_de_la_serie
 
 ### Qué aprenderemos en esta aula?
@@ -35,6 +37,8 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     ✅2- JPA (Java Persistence API), ORM Hibernate (Object Relational Mapping).
     ✅3- Mapear las entidades que iremos a usar en nuestra base de datos.
     ✅4- Crear variables de ambiente para dejar nuestro código seguro.
+
+<hr>
 
 ## ✅3-Mapeando_relacionamientos
 
@@ -51,14 +55,11 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
 
 <hr>
 
-## 4-Buscando_informaciones_en_la_base_de_datos
+## ✅4-Buscando_informaciones_en_la_base_de_datos
 
     ✅- Poder buscar cualquier serie y guardarla en la DB.
     ✅- Buscar episodios y guardarlos en la DB.
     ✅- Mostrar todas las series buscadas.
-    👷- Buscar series guardadas por nombre.
-    👷- Top 5 mejores series.
-    👷- Buscar series por categoría.
 
 ### 02-Búsquedas_por_partes_del_título
 
@@ -73,4 +74,12 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
 
     ✅- Buscar series guardadas por nombre.
     ✅- Top 5 mejores series.
-    👷✅- Buscar series por categoría.
+    ✅- Buscar series por categoría.
+
+<hr>
+
+## 5-Utilizando_el_lenguaje_de_consultas_de_JPA
+
+    ✅- Filtrar series por el número de temporadas y su evaluación.
+    👷✅- Buscar episodios por nombre.
+    👷✅- Top 5 episodios por serie.
