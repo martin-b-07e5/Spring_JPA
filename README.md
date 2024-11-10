@@ -71,6 +71,6 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
 
 #### Requerimientos del proyecto
 
-    👷✅- Buscar series guardadas por nombre.
+    ✅- Buscar series guardadas por nombre.
     👷- Top 5 mejores series.
     👷- Buscar series por categoría.

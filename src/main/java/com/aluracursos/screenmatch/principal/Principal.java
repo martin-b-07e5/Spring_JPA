@@ -154,7 +154,8 @@ public class Principal {
                 "\nRating: " + s.evaluacion() +
                 "\nGenero: " + s.genero() +
                 "\nActores: " + s.actores()
-        ));*/
+        ));
+    */
 
     // Por la profesora. Convertimos los DatosSerie a Serie
     /*serieList = datosSeriesList.stream()
@@ -171,7 +172,18 @@ public class Principal {
   }
 
   private void buscarSeriesPorTitulo() {
+//    mostrarSeriesBuscadas(); // series en la DB
+    System.out.println("Escribe el nombre de la serie que desees buscar");
+    var nombreSerie = teclado.nextLine();
 
+    // creamos nuevamente una lista donde vamos a almacenar esas series
+    Optional<Serie> serieBuscada = repository.findByTituloContainsIgnoreCase(nombreSerie);
+
+    if (serieBuscada.isPresent()) {
+      System.out.println("La serie buscada es: " + serieBuscada.get());
+    } else {
+      System.out.println("No se ha encontrado la serie con ese título.");
+    }
   }
 
 }
