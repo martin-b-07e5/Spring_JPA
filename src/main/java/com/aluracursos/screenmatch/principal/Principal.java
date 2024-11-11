@@ -37,7 +37,7 @@ public class Principal {
           5- Top 5 mejores series.
           6- Buscar series por género.
           7- Filtrar series por TotalTemporadas <=x y Rating >y.y
-          8- Idem 7 Using native queries (// siempre va a mostrar lo que diga la consulta)
+          8- Idem 7 Using JPQL (The Java Persistence Query Language).
           
           0 - Salir""";
       System.out.println(menu);
@@ -69,7 +69,7 @@ public class Principal {
             buscarSeriesPorTotalTemporadasYRating();
             break;
           case 8:
-            buscarSeriesPorTotalTemporadasYRatingNativeQuery();
+            buscarSeriesPorTotalTemporadasYRatingJPQL();
             break;
 
           case 0:
@@ -281,8 +281,7 @@ public class Principal {
 
   }
 
-  // siempre va a mostrar lo que diga la consulta
-  private void buscarSeriesPorTotalTemporadasYRatingNativeQuery() {
+  private void buscarSeriesPorTotalTemporadasYRatingJPQL() {
     int totalTemporadas = 0;
     double rating = 0;
     try {
@@ -295,12 +294,11 @@ public class Principal {
       teclado.nextLine(); // Limpia el buffer tras nextInt()
 
       List<Serie> seriesPorTotalTemporadasYRating =
-          repository.seriesPorTemporadaYEvaluacionNativeQuery(totalTemporadas, rating);
+          repository.seriesPorTemporadaYEvaluacionJPQL(totalTemporadas, rating);
 
       if (seriesPorTotalTemporadasYRating.isEmpty()) {
         System.out.println("No se han encontrado series con ese criterio.");
       } else {
-        System.out.println("// siempre va a mostrar lo que diga la consulta");
         System.out.println("\nSeries con un total de temporadas <=" + totalTemporadas + " y un rating >" + rating);
 //        seriesPorTotalTemporadasYRating.forEach(System.out::println); // print all
         seriesPorTotalTemporadasYRating.forEach(s -> System.out.println(

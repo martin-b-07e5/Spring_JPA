@@ -86,7 +86,10 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
 
 ### ¿Qué aprenderemos en esta aula? (02-Conociendo_JPQL)
 
-    - Querys nativas (Native Querys).
-    - JPQL (The Java Persistence Query Language).
-    - Búsquedas personalizadas usando JPQL.
+    ✅- Querys nativas (Native Querys).
+    ✅- JPQL (The Java Persistence Query Language).
+    ✅- Búsquedas personalizadas usando JPQL.
+
+'native query' tiene mas perfomce than 'JPQL'
+en caso de 1 migración jpql es mas flexible
 

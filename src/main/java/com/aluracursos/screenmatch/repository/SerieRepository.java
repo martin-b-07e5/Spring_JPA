@@ -20,14 +20,13 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
   //  06-Búsquedas_por_categorías (genre)
   List<Serie> findByGenero(Categoria genero); // le pasamos el 'enum'
 
-  // buscar series que TotalTemporadas >=8 y Rating > a 8.8
-//  List<Serie> findByTotalTemporadasGreaterThanEqualAndEvaluacionGreaterThan(int totalTemporadas, double evaluacion);
+  //  List<Serie> findByTotalTemporadasGreaterThanEqualAndEvaluacionGreaterThan(int totalTemporadas, double evaluacion);
   List<Serie> findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThan(int totalTemporadas, double evaluacion);
 
-  // siempre va a mostrar lo que diga la consulta
-  @Query(value = "select * from series where series.total_temporadas <= ?1 and series.evaluacion >= 7.5;",
-      nativeQuery = true)
-  List<Serie> seriesPorTemporadaYEvaluacionNativeQuery(int totalTemporadas, double evaluacion); // parámetros innecesario
+  // IMPORTANTE los : hacen referencia al parametro que pasamos.
+  // Para que distinga entre el atributo de la clase y el valor que pasamos
+  @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :totalTemporadas AND s.evaluacion > :evaluacion")
+  List<Serie> seriesPorTemporadaYEvaluacionJPQL(int totalTemporadas, double evaluacion);
 
 //  Serie findByPoster(String poster);
 //  Serie findByActores(String actores);
