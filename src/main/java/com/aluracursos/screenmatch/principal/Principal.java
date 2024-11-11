@@ -36,7 +36,8 @@ public class Principal {
           4- Buscar series por título.
           5- Top 5 mejores series.
           6- Buscar series por género.
-          7- Filtrar series por TotalTemporadas >=8 y Rating >8.8
+          7- Filtrar series por TotalTemporadas <=x y Rating >y.y
+          8- Idem 7 Using native queries (// siempre va a mostrar lo que diga la consulta)
           
           0 - Salir""";
       System.out.println(menu);
@@ -67,6 +68,10 @@ public class Principal {
           case 7:
             buscarSeriesPorTotalTemporadasYRating();
             break;
+          case 8:
+            buscarSeriesPorTotalTemporadasYRatingNativeQuery();
+            break;
+
           case 0:
             System.out.println("Cerrando la aplicación...");
             break;
@@ -247,12 +252,12 @@ public class Principal {
       teclado.nextLine(); // Limpia el buffer tras nextInt()
 
       List<Serie> seriesPorTotalTemporadasYRating =
-          repository.findByTotalTemporadasGreaterThanEqualAndEvaluacionGreaterThan(totalTemporadas, rating);
+          repository.findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThan(totalTemporadas, rating);
 
       if (seriesPorTotalTemporadasYRating.isEmpty()) {
         System.out.println("No se han encontrado series con ese criterio.");
       } else {
-        System.out.println("\nSeries con un total de temporadas >=" + totalTemporadas + " y un rating >" + rating);
+        System.out.println("\nSeries con un total de temporadas <=" + totalTemporadas + " y un rating >" + rating);
 //        seriesPorTotalTemporadasYRating.forEach(System.out::println); // print all
         seriesPorTotalTemporadasYRating.forEach(s -> System.out.println(
             "id" + s.getId() +
@@ -274,8 +279,51 @@ public class Principal {
       e.printStackTrace(); // Opcional: imprime el stack trace para facilitar la depuración
     }
 
-
   }
+
+  // siempre va a mostrar lo que diga la consulta
+  private void buscarSeriesPorTotalTemporadasYRatingNativeQuery() {
+    int totalTemporadas = 0;
+    double rating = 0;
+    try {
+      System.out.println("Filtrar series con cuántas temporadas");
+      totalTemporadas = teclado.nextInt();
+      teclado.nextLine(); // Limpia el buffer tras nextInt()
+
+      System.out.println("¿Con rating a partir de cuanto?");
+      rating = teclado.nextDouble();
+      teclado.nextLine(); // Limpia el buffer tras nextInt()
+
+      List<Serie> seriesPorTotalTemporadasYRating =
+          repository.seriesPorTemporadaYEvaluacionNativeQuery(totalTemporadas, rating);
+
+      if (seriesPorTotalTemporadasYRating.isEmpty()) {
+        System.out.println("No se han encontrado series con ese criterio.");
+      } else {
+        System.out.println("// siempre va a mostrar lo que diga la consulta");
+        System.out.println("\nSeries con un total de temporadas <=" + totalTemporadas + " y un rating >" + rating);
+//        seriesPorTotalTemporadasYRating.forEach(System.out::println); // print all
+        seriesPorTotalTemporadasYRating.forEach(s -> System.out.println(
+            "id" + s.getId() +
+                ", Título: " + s.getTitulo() +
+                ", Temporadas: " + s.getTotalTemporadas() +
+                ", Rating: " + s.getEvaluacion()
+        ));
+      }
+
+    } catch (InputMismatchException e) {
+      System.out.println("Error: Entrada inválida. Por favor, ingrese valores numéricos válidos.");
+      System.out.println(e.getMessage());
+      teclado.nextLine(); // Limpia el buffer tras entrada no válida
+    } catch (NumberFormatException e) {
+      System.out.println("Error al parsear un número: " + e.getMessage());
+      teclado.nextLine(); // Limpia el buffer tras entrada no válida
+    } catch (RuntimeException e) {
+      System.out.println("Ocurrió un error inesperado. Por favor, inténtelo de nuevo.");
+      e.printStackTrace(); // Opcional: imprime el stack trace para facilitar la depuración
+    }
+
+  } // end buscarSeriesPorTotalTemporadasYRatingNariveQuery()
 
 
 } // end Principal

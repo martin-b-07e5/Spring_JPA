@@ -65,10 +65,10 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
 
 ### ¿Qué aprenderemos en esta aula?
 
-    1- Querys derivadas (Derived Querys).
-    2- Búsqueda de datos personalizadas.
-    3- Top 5 mejores Series.
-    4- Búsquedas por categorías usando enums.
+    ✅1- Querys derivadas (Derived Querys).
+    ✅2- Búsqueda de datos personalizadas.
+    ✅3- Top 5 mejores Series.
+    ✅4- Búsquedas por categorías usando enums.
 
 #### Requerimientos del proyecto
 
@@ -83,3 +83,10 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     ✅- Filtrar series por el número de temporadas y su evaluación.
     👷✅- Buscar episodios por nombre.
     👷✅- Top 5 episodios por serie.
+
+### ¿Qué aprenderemos en esta aula? (02-Conociendo_JPQL)
+
+    - Querys nativas (Native Querys).
+    - JPQL (The Java Persistence Query Language).
+    - Búsquedas personalizadas usando JPQL.
+
