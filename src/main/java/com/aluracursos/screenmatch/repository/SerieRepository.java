@@ -33,8 +33,18 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 //  LIKE	Check if a value matches a pattern (case sensitive)
 //  ILIKE	Check if a value matches a pattern (case insensitive)
   @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:nombreEpisodio%")
-  List<Episodio> episodesByNombre(String nombreEpisodio);
-//  List<Episodio> findEpisodesByNombreContainsIgnoreCase(String nombreEpisodio);
+  List<Episodio> episodesByNombrePostgres(String nombreEpisodio);
+
+
+  @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE LOWER(e.titulo) LIKE LOWER(CONCAT('%', :nombreEpisodio, '%'))")
+  List<Episodio> episodesByNombreMySql(String nombreEpisodio);
+  /*LOWER(e.titulo) convierte el título del episodio a minúsculas.
+
+    LOWER(CONCAT('%', :nombreEpisodio, '%')) convierte el parámetro de búsqueda a minúsculas y añade comodines % antes y después, lo que permite buscar coincidencias parciales sin importar mayúsculas o minúsculas.
+
+    LIKE en MySQL es sensible a mayúsculas y minúsculas solo en algunos casos, dependiendo de la collation de la base de datos.
+    Este enfoque asegura insensibilidad al caso de manera explícita.
+  */
 
 
 //  Serie findByPoster(String poster);

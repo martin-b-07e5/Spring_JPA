@@ -37,8 +37,8 @@ public class Principal {
           5- Top 5 mejores series.
           6- Buscar series por género.
           7- Filtrar series por TotalTemporadas <=x y Rating >y.y
-          8- Idem 7 Using JPQL (The Java Persistence Query Language).
-          9- Episodes By Nombre
+          77- Idem 7 Using JPQL (The Java Persistence Query Language).
+          8- Buscar episodios por Nombre
           
           0 - Salir""";
       System.out.println(menu);
@@ -69,10 +69,10 @@ public class Principal {
           case 7:
             buscarSeriesPorTotalTemporadasYRating();
             break;
-          case 8:
+          case 77:
             buscarSeriesPorTotalTemporadasYRatingJPQL();
             break;
-          case 9:
+          case 8:
             buscarEpisodiosPorNombre();
             break;
 
@@ -331,19 +331,33 @@ public class Principal {
     System.out.println("Escribe el nombre del episodio que deseas buscar");
     String nombreEpisodio = teclado.nextLine();
 
-    List<Episodio> episodioList = repository.episodesByNombre(nombreEpisodio);
+    List<Episodio> episodioList = repository.episodesByNombrePostgres(nombreEpisodio);
 
     if (episodioList.isEmpty()) {
       System.out.println("No se han encontrado episodios con ese nombre.");
     } else {
       System.out.println("\nEpisodios que contienen el nombre '" + nombreEpisodio + "':");
-      episodioList.forEach(e -> {
+      // x profesora
+      /*episodioList.forEach(e -> {
         System.out.printf(
             "id: %d, Título: %s, Temporada: %d, Serie: %s %n",
             e.getId(), e.getTitulo(), e.getTemporada(), e.getSerie().getTitulo()
-
         );
-      });
+      });*/
+
+      for (Episodio e : episodioList) {
+        System.out.printf(
+            "id: %d, Serie: %s, Episodio: %d, Temporada: %d, Evaluación %.0f, Título: %s\n",
+            e.getId(),
+            e.getSerie().getTitulo(),
+            e.getNumeroEpisodio(),
+            e.getTemporada(),
+            e.getEvaluacion(),
+            e.getTitulo()
+        );
+      }
+
+
     }
 
   } // end buscarEpisodiosPorNombre
