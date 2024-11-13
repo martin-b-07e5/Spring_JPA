@@ -38,6 +38,7 @@ public class Principal {
           6- Buscar series por género.
           7- Filtrar series por TotalTemporadas <=x y Rating >y.y
           8- Idem 7 Using JPQL (The Java Persistence Query Language).
+          9- Episodes By Nombre
           
           0 - Salir""";
       System.out.println(menu);
@@ -70,6 +71,9 @@ public class Principal {
             break;
           case 8:
             buscarSeriesPorTotalTemporadasYRatingJPQL();
+            break;
+          case 9:
+            buscarEpisodiosPorNombre();
             break;
 
           case 0:
@@ -322,6 +326,27 @@ public class Principal {
     }
 
   } // end buscarSeriesPorTotalTemporadasYRatingNariveQuery()
+
+  private void buscarEpisodiosPorNombre() {
+    System.out.println("Escribe el nombre del episodio que deseas buscar");
+    String nombreEpisodio = teclado.nextLine();
+
+    List<Episodio> episodioList = repository.episodesByNombre(nombreEpisodio);
+
+    if (episodioList.isEmpty()) {
+      System.out.println("No se han encontrado episodios con ese nombre.");
+    } else {
+      System.out.println("\nEpisodios que contienen el nombre '" + nombreEpisodio + "':");
+      episodioList.forEach(e -> {
+        System.out.printf(
+            "id: %d, Título: %s, Temporada: %d, Serie: %s %n",
+            e.getId(), e.getTitulo(), e.getTemporada(), e.getSerie().getTitulo()
+
+        );
+      });
+    }
+
+  } // end buscarEpisodiosPorNombre
 
 
 } // end Principal

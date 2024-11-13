@@ -90,6 +90,7 @@ Proyecto desarrollado durante el segundo curso de la formación Avanzando con Ja
     ✅- JPQL (The Java Persistence Query Language).
     ✅- Búsquedas personalizadas usando JPQL.
 
-'native query' tiene mas perfomce than 'JPQL'
-en caso de 1 migración jpql es mas flexible
+### 04-Buscando_episodios_por_parte_del_título
 
+    👷✅- Buscar episodios por nombre.
+    👷✅- Top 5 episodios por serie.
