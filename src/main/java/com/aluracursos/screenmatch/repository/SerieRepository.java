@@ -46,6 +46,10 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     Este enfoque asegura insensibilidad al caso de manera explícita.
   */
 
+  // top 5 episodes
+  @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.evaluacion DESC LIMIT 5")
+  List<Episodio> top5Episodios(Serie serie);
+
 
 //  Serie findByPoster(String poster);
 //  Serie findByActores(String actores);

@@ -18,6 +18,7 @@ public class Principal {
   //  private List<Serie> serieList = new ArrayList<>(); // x mi
   private List<Serie> serieList; // por profesora
   private SerieRepository repository;
+  private Optional<Serie> serieBuscadaList;
 
   // constructor
   public Principal(SerieRepository repository) {
@@ -39,6 +40,7 @@ public class Principal {
           7- Filtrar series por TotalTemporadas <=x y Rating >y.y
           77- Idem 7 Using JPQL (The Java Persistence Query Language).
           8- Buscar episodios por Nombre
+          9- Top 5 episodios de una serie.
           
           0 - Salir""";
       System.out.println(menu);
@@ -74,6 +76,9 @@ public class Principal {
             break;
           case 8:
             buscarEpisodiosPorNombre();
+            break;
+          case 9:
+            buscarTop5Episodios();
             break;
 
           case 0:
@@ -199,26 +204,26 @@ public class Principal {
     System.out.println("Escribe el nombre de la serie que desees buscar");
     var nombreSerie = teclado.nextLine();
 
-    // creamos nuevamente una lista donde vamos a almacenar esas series
-    Optional<Serie> serieBuscada = repository.findByTituloContainsIgnoreCase(nombreSerie);
+    // creamos nuevamente una lista (GLOBAL) donde vamos a almacenar esas series
+    serieBuscadaList = repository.findByTituloContainsIgnoreCase(nombreSerie);
 
-    if (serieBuscada.isPresent()) {
-      System.out.println("La serie buscada es: " + serieBuscada.get());
+    if (serieBuscadaList.isPresent()) {
+      System.out.println("La serie buscada es: " + serieBuscadaList.get());
     } else {
       System.out.println("No se ha encontrado la serie con ese título.");
     }
   }
 
   private void mostrarTop5Series() {
-    List<Serie> seriesTop5 = repository.findTop5ByOrderByEvaluacionDesc();
+    List<Serie> seriesTop5List = repository.findTop5ByOrderByEvaluacionDesc();
 
-    if (seriesTop5.isEmpty()) {
+    if (seriesTop5List.isEmpty()) {
       System.out.println("No hay series en la base de datos.");
     } else {
       System.out.println("\nTop 5 series por rating:");
 //      seriesTop5.forEach(System.out::println); // print all
-      // imprimimos solo el título y la evaluación
-      seriesTop5.forEach(s -> System.out.println(
+      // imprimimos solo el título, qy temporadas y la evaluación
+      seriesTop5List.forEach(s -> System.out.println(
           "Título: " + s.getTitulo() +
               ", Temporadas: " + s.getTotalTemporadas() +
               ", Rating: " + s.getEvaluacion()
@@ -362,6 +367,22 @@ public class Principal {
 
   } // end buscarEpisodiosPorNombre
 
+  private void buscarTop5Episodios() {
+    buscarSeriesPorTitulo();  // elegimos la serie.
+    if (serieBuscadaList.isPresent()) {
+      Serie serie = serieBuscadaList.get();
+      List<Episodio> topEpisodios = repository.top5Episodios(serie);
+
+      System.out.println("\nEpisodios ordenados por evaluación:");
+      topEpisodios.forEach(e -> System.out.println(
+          "title: " + e.getTitulo() +
+              ", Episodio id: " + e.getId() +
+              ", S" + e.getTemporada() + "E" + e.getNumeroEpisodio() +
+              ", Rating: " + e.getEvaluacion()
+      ));
+    }
+
+  }
 
 } // end Principal
 
