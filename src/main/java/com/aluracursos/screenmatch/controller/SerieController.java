@@ -1,14 +1,25 @@
 package com.aluracursos.screenmatch.controller;
 
+import com.aluracursos.screenmatch.model.Serie;
+import com.aluracursos.screenmatch.repository.SerieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class SerieController {
 
+  @Autowired
+  private SerieRepository repository;
+
+
   @GetMapping("/series")
-  public String mostrarMensaje() {
-    return "este es mi primer msg de Series en mi API web - en http://localhost:8080/series";
+  public List<Serie> getAllSeries() {
+    return repository.findAll();
   }
+
 
 }
