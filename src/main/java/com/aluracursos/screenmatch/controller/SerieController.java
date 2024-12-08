@@ -3,6 +3,7 @@ package com.aluracursos.screenmatch.controller;
 import com.aluracursos.screenmatch.dto.SerieDTO;
 import com.aluracursos.screenmatch.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class SerieController {
   private SerieRepository repository;
 
 
+  //  @CrossOrigin(origins = "http://127.0.0.1:5500")
   @GetMapping("/series")
   public List<SerieDTO> getAllSeries() {
     return repository.findAll().stream()
