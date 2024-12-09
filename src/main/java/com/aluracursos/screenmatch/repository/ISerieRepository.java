@@ -1,22 +1,25 @@
 package com.aluracursos.screenmatch.repository;
 
+import com.aluracursos.screenmatch.dto.SerieDTO;
 import com.aluracursos.screenmatch.model.Categoria;
 import com.aluracursos.screenmatch.model.Episodio;
 import com.aluracursos.screenmatch.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface SerieRepository extends JpaRepository<Serie, Long> {
+@Repository
+public interface ISerieRepository extends JpaRepository<Serie, Long> {
   Serie findByTitulo(String titulo);
 
   //  Serie findByTituloContainsIgnoreCase(String titulo);
   Optional<Serie> findByTituloContainsIgnoreCase(String titulo);
 
   //  5- Top 5 mejores series.
-  List<Serie> findTop5ByOrderByEvaluacionDesc();
+  List<SerieDTO> findTop5ByOrderByEvaluacionDesc();
 
   //  06-Búsquedas_por_categorías (genre)
   List<Serie> findByGenero(Categoria genero); // le pasamos el 'enum'

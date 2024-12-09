@@ -1,34 +1,34 @@
 package com.aluracursos.screenmatch.controller;
 
 import com.aluracursos.screenmatch.dto.SerieDTO;
-import com.aluracursos.screenmatch.repository.SerieRepository;
+import com.aluracursos.screenmatch.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class SerieController {
 
+  // dependency injection
   @Autowired
-  private SerieRepository repository;
+  private SerieService serieService;
 
+  @GetMapping("/inicio")
+  public String inicio() {
+    return "Bienvenido a Screenmatch!";
+  }
 
-  //  @CrossOrigin(origins = "http://127.0.0.1:5500")
   @GetMapping("/series")
   public List<SerieDTO> getAllSeries() {
-    return repository.findAll().stream()
-        .map(serie -> new SerieDTO(
-                serie.getTitulo(), serie.getTotalTemporadas(), serie.getEvaluacion(),
-                serie.getPoster(), serie.getGenero(), serie.getActores(),
-                serie.getSinopsis()
-            )
-        )
-        .collect(Collectors.toList());
+    return serieService.getAllSeries();
+  }
 
+  @GetMapping("/series/top5")
+  public List<SerieDTO> getTop5Series() {
+    return serieService.findTop5ByOrderByEvaluacionDesc();
   }
 
 

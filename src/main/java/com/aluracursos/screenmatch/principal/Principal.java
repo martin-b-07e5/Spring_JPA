@@ -1,7 +1,8 @@
 package com.aluracursos.screenmatch.principal;
 
+import com.aluracursos.screenmatch.dto.SerieDTO;
 import com.aluracursos.screenmatch.model.*;
-import com.aluracursos.screenmatch.repository.SerieRepository;
+import com.aluracursos.screenmatch.repository.ISerieRepository;
 import com.aluracursos.screenmatch.service.ConsumoAPI;
 import com.aluracursos.screenmatch.service.ConvierteDatos;
 
@@ -17,11 +18,11 @@ public class Principal {
   private List<DatosSerie> datosSeriesList = new ArrayList<>();
   //  private List<Serie> serieList = new ArrayList<>(); // x mi
   private List<Serie> serieList; // por profesora
-  private SerieRepository repository;
+  private ISerieRepository repository;
   private Optional<Serie> serieBuscadaList;
 
   // constructor
-  public Principal(SerieRepository repository) {
+  public Principal(ISerieRepository repository) {
     this.repository = repository;
   }
 
@@ -215,7 +216,7 @@ public class Principal {
   }
 
   private void mostrarTop5Series() {
-    List<Serie> seriesTop5List = repository.findTop5ByOrderByEvaluacionDesc();
+    List<SerieDTO> seriesTop5List = repository.findTop5ByOrderByEvaluacionDesc();
 
     if (seriesTop5List.isEmpty()) {
       System.out.println("No hay series en la base de datos.");
@@ -224,9 +225,9 @@ public class Principal {
 //      seriesTop5.forEach(System.out::println); // print all
       // imprimimos solo el título, qy temporadas y la evaluación
       seriesTop5List.forEach(s -> System.out.println(
-          "Título: " + s.getTitulo() +
-              ", Temporadas: " + s.getTotalTemporadas() +
-              ", Rating: " + s.getEvaluacion()
+          "Título: " + s.titulo() +
+              ", Temporadas: " + s.totalTemporadas() +
+              ", Rating: " + s.evaluacion()
       ));
     }
   }
