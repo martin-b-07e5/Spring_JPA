@@ -1,12 +1,15 @@
 package com.aluracursos.screenmatch.repository;
 
+//import com.aluracursos.screenmatch.dto.EpisodioDTO;
+
+import com.aluracursos.screenmatch.dto.EpisodioDTO;
+import com.aluracursos.screenmatch.dto.EpisodioDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
 import com.aluracursos.screenmatch.model.Categoria;
 import com.aluracursos.screenmatch.model.Episodio;
 import com.aluracursos.screenmatch.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -43,8 +46,11 @@ public interface ISerieRepository extends JpaRepository<Serie, Long> {
   List<Serie> lanzamientosMasRecientes();
 
   //  Buscar series por id
-//  @NonNull
+//  Optional<T> findById(ID id);
 //  Optional<Serie> findById(Long id);
+
+//  http://localhost:8080/series/14/temporadas/todas
+//Iterable<T> findAll();
 
 
   //  Buscar episodios por nombre
@@ -55,6 +61,12 @@ public interface ISerieRepository extends JpaRepository<Serie, Long> {
 
   @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE LOWER(e.titulo) LIKE LOWER(CONCAT('%', :nombreEpisodio, '%'))")
   List<Episodio> episodesByNombreMySql(String nombreEpisodio);
+
+  @Query("SELECT ep FROM Serie s JOIN s.episodios ep WHERE s.id = :id AND ep.temporada = :nroTemporada ")
+  List<Episodio> obtenerTemporadaPorNumero(Long id, Integer nroTemporada);
+
+//  List<EpisodioDTO> getAllEpisodes(Long id);
+
   /*LOWER(e.titulo) convierte el título del episodio a minúsculas.
 
     LOWER(CONCAT('%', :nombreEpisodio, '%')) convierte el parámetro de búsqueda a minúsculas y añade comodines % antes y después, lo que permite buscar coincidencias parciales sin importar mayúsculas o minúsculas.

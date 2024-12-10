@@ -1,5 +1,6 @@
 package com.aluracursos.screenmatch.service;
 
+import com.aluracursos.screenmatch.dto.EpisodioDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
 import com.aluracursos.screenmatch.model.Serie;
 import com.aluracursos.screenmatch.repository.ISerieRepository;
@@ -48,5 +49,42 @@ public class SerieService {
         .orElse(null);
   }
 
+  public List<EpisodioDTO> getAllEpisodes(Long id) {
+    Optional<Serie> serie = ISerieRepository.findById(id);
+    if (serie.isPresent()) {
+      Serie s = serie.get();
+      return s.getEpisodios()
+          .stream()
+          .map(ep -> new EpisodioDTO(ep.getTemporada(), ep.getTitulo(), ep.getNumeroEpisodio())
+          )
+          .collect(Collectors.toList());
+    } else {
+      return null;
+    }
+  }
+
+// esto funciona bien. Pero vamos a usar JPQL
+  /*public List<EpisodioDTO> getTemporadaPorNumero(Long id, Integer temporada) {
+    Optional<Serie> serie = ISerieRepository.findById(id);
+    if (serie.isPresent()) {
+      Serie s = serie.get();
+      return s.getEpisodios()
+          .stream()
+          .filter(ep -> ep.getTemporada().equals(temporada))
+          .map(ep -> new EpisodioDTO(ep.getTemporada(), ep.getTitulo(), ep.getNumeroEpisodio()))
+          .collect(Collectors.toList());
+    } else {
+      return null;
+    }
+  }
+}*/
+
+  // usando JPQL
+  public List<EpisodioDTO> getTemporadaPorNumero(Long id, Integer nroTemporada) {
+    return ISerieRepository.obtenerTemporadaPorNumero(id, nroTemporada)
+        .stream()
+        .map(ep -> new EpisodioDTO(ep.getTemporada(), ep.getTitulo(), ep.getNumeroEpisodio()))
+        .collect(Collectors.toList());
+  }
 
 }
