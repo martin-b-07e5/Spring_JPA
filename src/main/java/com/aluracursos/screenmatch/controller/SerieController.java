@@ -3,7 +3,6 @@ package com.aluracursos.screenmatch.controller;
 import com.aluracursos.screenmatch.dto.EpisodioDTO;
 
 import com.aluracursos.screenmatch.dto.SerieDTO;
-import com.aluracursos.screenmatch.service.EpisodioService;
 import com.aluracursos.screenmatch.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,6 @@ public class SerieController {
   // dependency injection
   @Autowired
   private SerieService serieService;
-  private EpisodioService episodioService;
 
   @GetMapping("/inicio")
   public String inicio() {
@@ -59,9 +57,12 @@ public class SerieController {
   //  http://localhost:8080/series/5/temporadas/1
   @GetMapping("/{id}/temporadas/{temporada}")
   public List<EpisodioDTO> getTemporada(@PathVariable Long id, @PathVariable Integer temporada) {
-//    return episodioService.getTemporada(id, temporada);
     return serieService.getTemporadaPorNumero(id, temporada);
   }
 
-
+  //  http://localhost:8080/series/categoria/crimen
+//  @GetMapping("/categoria/{nombre}")
+//  public List<SerieDTO> getSeriesPorCategoria(@PathVariable String nombre) {
+//
+//
 }
