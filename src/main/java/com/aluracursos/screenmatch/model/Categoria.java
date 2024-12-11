@@ -1,7 +1,7 @@
 package com.aluracursos.screenmatch.model;
 
 public enum Categoria {
-  ACCION("Action"),
+  ACTION("Action"),
   AVENTURA("Adventure"),
   COMEDIA("Comedy"),
   CRIMEN("Crime"),
