@@ -6,14 +6,6 @@ public enum Categoria {
   COMEDIA("Comedy"),
   CRIMEN("Crime"),
   DRAMA("Drama");
-  //  DOCUMENTARY("Documentary"),
-  //  FANTASIA("Fantasy"),
-//  HORROR("Horror"),
-//  MUSIC("Music"),
-//  OTHER("Other"),
-//  ROMANCE("Romance"),
-//  SCI_FI("Sci_fi"),
-//  THRILLER("Thriller");
 
   // variable
   private final String categoryOmdb;
@@ -29,7 +21,7 @@ public enum Categoria {
            entre la información de OMDB y la de nuestra aplicación. */
   public static Categoria fromString(String text) {
     for (Categoria categoria : Categoria.values()) {
-      if (categoria.categoryOmdb.equalsIgnoreCase(text)) {
+      if (categoria.name().equalsIgnoreCase(text) || categoria.categoryOmdb.equalsIgnoreCase(text)) {
         return categoria;
       }
     }

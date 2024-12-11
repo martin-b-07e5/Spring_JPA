@@ -2,6 +2,7 @@ package com.aluracursos.screenmatch.service;
 
 import com.aluracursos.screenmatch.dto.EpisodioDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
+import com.aluracursos.screenmatch.model.Categoria;
 import com.aluracursos.screenmatch.model.Serie;
 import com.aluracursos.screenmatch.repository.ISerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,4 +88,8 @@ public class SerieService {
         .collect(Collectors.toList());
   }
 
+  public List<SerieDTO> getSeriesPorCategoria(String nombreGenero) {
+    Categoria categoria = Categoria.fromString(nombreGenero);
+    return convierteDatos(ISerieRepository.findByGenero(categoria));
+  }
 }

@@ -61,8 +61,10 @@ public class SerieController {
   }
 
   //  http://localhost:8080/series/categoria/crimen
-//  @GetMapping("/categoria/{nombre}")
-//  public List<SerieDTO> getSeriesPorCategoria(@PathVariable String nombre) {
+  @GetMapping("/categoria/{nombre}")
+  public List<SerieDTO> getSeriesPorCategoria(@PathVariable String nombre) {
+    return serieService.getSeriesPorCategoria(nombre);
+  }
 //
 //
 }
