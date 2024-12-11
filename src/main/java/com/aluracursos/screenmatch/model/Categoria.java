@@ -1,19 +1,19 @@
 package com.aluracursos.screenmatch.model;
 
 public enum Categoria {
-  ACTION("Action"),
-  ADVENTURE("Adventure"),
-  COMEDY("Comedy"),
-  CRIME("Crime"),
-  DOCUMENTARY("Documentary"),
-  DRAMA("Drama"),
-  FANTASY("Fantasy"),
-  HORROR("Horror"),
-  MUSIC("Music"),
-  OTHER("Other"),
-  ROMANCE("Romance"),
-  SCI_FI("Sci_fi"),
-  THRILLER("Thriller");
+  ACCION("Action"),
+  AVENTURA("Adventure"),
+  COMEDIA("Comedy"),
+  CRIMEN("Crime"),
+  DRAMA("Drama");
+  //  DOCUMENTARY("Documentary"),
+  //  FANTASIA("Fantasy"),
+//  HORROR("Horror"),
+//  MUSIC("Music"),
+//  OTHER("Other"),
+//  ROMANCE("Romance"),
+//  SCI_FI("Sci_fi"),
+//  THRILLER("Thriller");
 
   // variable
   private final String categoryOmdb;
@@ -27,14 +27,16 @@ public enum Categoria {
   /* 05-Preparando el ambiente: método utilizado en el enum categoría
         método específico para realizar la conversión
            entre la información de OMDB y la de nuestra aplicación. */
-  public static Categoria fromAString(String text) {
+  public static Categoria fromString(String text) {
     for (Categoria categoria : Categoria.values()) {
       if (categoria.categoryOmdb.equalsIgnoreCase(text)) {
         return categoria;
       }
     }
+    throw new IllegalArgumentException("Ninguna categoria encontrada: " + text);
     //"Ninguna categoría encontrada
-    return Categoria.OTHER;
+//    return Categoria.OTHER;
   }
+
 
 }

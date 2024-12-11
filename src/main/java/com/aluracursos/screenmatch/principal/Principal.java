@@ -239,7 +239,7 @@ public class Principal {
 
     // transformamos generoSerie en un elemento del enum Categoria.
     // Categoria categoria = Categoria.fromString(generoSerie);
-    List<Serie> seriesPorGenero = repository.findByGenero(Categoria.fromAString(generoSerie)); // desde la versión 1.15.0 de Spring Data JPA
+    List<Serie> seriesPorGenero = repository.findByGenero(Categoria.fromString(generoSerie)); // desde la versión 1.15.0 de Spring Data JPA
 
     if (seriesPorGenero.isEmpty()) {
       System.out.println("No se ha encontrado la categoría '" + generoSerie + "'");
