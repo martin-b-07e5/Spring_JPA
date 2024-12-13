@@ -1,9 +1,5 @@
 package com.aluracursos.screenmatch.repository;
 
-//import com.aluracursos.screenmatch.dto.EpisodioDTO;
-
-import com.aluracursos.screenmatch.dto.EpisodioDTO;
-import com.aluracursos.screenmatch.dto.EpisodioDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
 import com.aluracursos.screenmatch.model.Categoria;
 import com.aluracursos.screenmatch.model.Episodio;
@@ -64,6 +60,7 @@ public interface ISerieRepository extends JpaRepository<Serie, Long> {
 
   @Query("SELECT ep FROM Serie s JOIN s.episodios ep WHERE s.id = :id AND ep.temporada = :nroTemporada ")
   List<Episodio> obtenerTemporadaPorNumero(Long id, Integer nroTemporada);
+
 
 //  List<EpisodioDTO> getAllEpisodes(Long id);
 

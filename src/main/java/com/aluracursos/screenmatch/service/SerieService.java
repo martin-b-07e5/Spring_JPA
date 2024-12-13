@@ -92,4 +92,16 @@ public class SerieService {
     Categoria categoria = Categoria.fromString(nombreGenero);
     return convierteDatos(ISerieRepository.findByGenero(categoria));
   }
+
+  public List<EpisodioDTO> obtenerTopEpisodios(Long id) {
+    var serie = ISerieRepository.findById(id).get();
+    return ISerieRepository.top5Episodios(serie)
+        .stream()
+        .map(ep -> new EpisodioDTO(ep.getTemporada(), ep.getTitulo(), ep.getNumeroEpisodio()))
+        .collect(Collectors.toList());
+  }
+
+
+//
+//
 }

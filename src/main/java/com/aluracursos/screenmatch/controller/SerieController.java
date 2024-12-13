@@ -65,6 +65,15 @@ public class SerieController {
   public List<SerieDTO> getSeriesPorCategoria(@PathVariable String nombre) {
     return serieService.getSeriesPorCategoria(nombre);
   }
+
+  // Tu misión es configurar el endpoint "/series/id/temporadas/top"
+//  http://localhost:8080/series/1/temporadas/top
+  @GetMapping("/{id}/temporadas/top")
+  public List<EpisodioDTO> obterTopEpisodios(@PathVariable Long id) {
+    return serieService.obtenerTopEpisodios(id);
+  }
+
+
 //
 //
 }
